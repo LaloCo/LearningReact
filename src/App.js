@@ -10,11 +10,14 @@ const app = props => {
       { name: 'Eduardo', age: 26 },
       { name: 'Yesenia', age: 26 },
       { name: 'Marty', age: 60 }
-    ],
+    ]
+  });
+
+  const [ otherState, setOtherState ] = useState({
     otherState: 'something something'
   });
 
-  console.log(personsState);
+  console.log(personsState, otherState);
 
   const switchNameHandler = () => {
     // by using arrow functions (ES6 syntax), the 'this' keyword
@@ -26,7 +29,6 @@ const app = props => {
     // with React Hooks, this does not merge this new state with the old one
     // as it happened with class-based Components, it overrides everything
     setPersonsState({
-      ...personsState,
       persons: [
         { name: 'Eduardo Rosas', age: 26 },
         { name: 'Yesenia López', age: 26 },
