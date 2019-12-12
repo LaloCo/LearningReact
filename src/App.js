@@ -19,7 +19,7 @@ const app = props => {
 
   console.log(personsState, otherState);
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
     // by using arrow functions (ES6 syntax), the 'this' keyword
     // actually refers to the class (App in this case)
     // contrary to defining this as a normal function (ES5)
@@ -32,7 +32,7 @@ const app = props => {
       persons: [
         { name: 'Eduardo Rosas', age: 26 },
         { name: 'Yesenia López', age: 26 },
-        { name: 'Marty Cagan', age: 60 }
+        { name: newName, age: 60 }
       ]
     })
   }
@@ -41,10 +41,16 @@ const app = props => {
     <div className="App">
       <h1>Hi, I'm a React app</h1>
       <p>This is really working!!!</p>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
-      <Person name={personsState.persons[1].name} age={personsState.persons[1].age} >Some extra information about me.</Person>
-      <Person name={personsState.persons[2].name} age={personsState.persons[2].age} />
+      <button onClick={() => switchNameHandler('Marty!!')}>Switch Name</button>
+      <Person name={personsState.persons[0].name}
+              age={personsState.persons[0].age} />
+      <Person name={personsState.persons[1].name}
+              age={personsState.persons[1].age}
+              click={switchNameHandler.bind(this, 'Marty Cagan')} >
+              Some extra information about me.
+      </Person>
+      <Person name={personsState.persons[2].name}
+              age={personsState.persons[2].age} />
     </div>
   );
 }
