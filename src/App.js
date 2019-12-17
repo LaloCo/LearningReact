@@ -17,6 +17,10 @@ const app = props => {
     otherState: 'something something'
   });
 
+  const [ showPersonsState, setShowPersonsState ] = useState({
+    showPersons: false
+  });
+
   console.log(personsState, otherState);
 
   const switchNameHandler = (newName) => {
@@ -33,13 +37,13 @@ const app = props => {
         { name: 'Eduardo Rosas', age: 26 },
         { name: 'Yesenia López', age: 26 },
         { name: newName, age: 60 }
-      ],
-      showPersons: false
+      ]
     })
   }
 
   const togglePersonsHandler = () => {
-
+    const doesShow = showPersonsState.showPersons;
+    setShowPersonsState({showPersons: !doesShow});
   }
 
   const nameChangeHandler = event => {
@@ -65,9 +69,11 @@ const app = props => {
       <h1>Hi, I'm a React app</h1>
       <p>This is really working!!!</p>
       <button style={style}
-              onClick={togglePersonsHandler}>Switch Name</button>
+              onClick={togglePersonsHandler}>
+        {showPersonsState.showPersons === true ? "Hide persons" : "Show persons"}
+      </button>
       {
-        this.StaticRange.showPersons === true ?
+        showPersonsState.showPersons === true ?
           <div>
             <Person name={personsState.persons[0].name}
                     age={personsState.persons[0].age}
