@@ -66,19 +66,21 @@ const app = props => {
       <p>This is really working!!!</p>
       <button style={style}
               onClick={togglePersonsHandler}>Switch Name</button>
-      { this.StaticRange.showPersons ?
-        <div>
-          <Person name={personsState.persons[0].name}
-                  age={personsState.persons[0].age}
-                  changed={nameChangeHandler} />
-          <Person name={personsState.persons[1].name}
-                  age={personsState.persons[1].age}
-                  click={switchNameHandler.bind(this, 'Marty Cagan')} >
-                  Some extra information about me.
-          </Person>
-          <Person name={personsState.persons[2].name}
-                  age={personsState.persons[2].age} />
-        </div> : null
+      {
+        this.StaticRange.showPersons === true ?
+          <div>
+            <Person name={personsState.persons[0].name}
+                    age={personsState.persons[0].age}
+                    changed={nameChangeHandler} />
+            <Person name={personsState.persons[1].name}
+                    age={personsState.persons[1].age}
+                    click={switchNameHandler.bind(this, 'Marty Cagan')} >
+                    Some extra information about me.
+            </Person>
+            <Person name={personsState.persons[2].name}
+                    age={personsState.persons[2].age} />
+          </div>
+        : null
       }
     </div>
   );
