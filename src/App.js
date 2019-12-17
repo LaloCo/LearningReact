@@ -64,6 +64,25 @@ const app = props => {
     cursor: 'pointer'
   };
 
+  let persons = null;
+
+  if (showPersonsState.showPersons) {
+    persons = (
+      <div>
+        <Person name={personsState.persons[0].name}
+                age={personsState.persons[0].age}
+                changed={nameChangeHandler} />
+        <Person name={personsState.persons[1].name}
+                age={personsState.persons[1].age}
+                click={switchNameHandler.bind(this, 'Marty Cagan')} >
+                Some extra information about me.
+        </Person>
+        <Person name={personsState.persons[2].name}
+                age={personsState.persons[2].age} />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'm a React app</h1>
@@ -72,22 +91,7 @@ const app = props => {
               onClick={togglePersonsHandler}>
         {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
       </button>
-      {
-        showPersonsState.showPersons ?
-          <div>
-            <Person name={personsState.persons[0].name}
-                    age={personsState.persons[0].age}
-                    changed={nameChangeHandler} />
-            <Person name={personsState.persons[1].name}
-                    age={personsState.persons[1].age}
-                    click={switchNameHandler.bind(this, 'Marty Cagan')} >
-                    Some extra information about me.
-            </Person>
-            <Person name={personsState.persons[2].name}
-                    age={personsState.persons[2].age} />
-          </div>
-        : null
-      }
+      {persons}
     </div>
   );
 }
