@@ -70,10 +70,10 @@ const app = props => {
       <p>This is really working!!!</p>
       <button style={style}
               onClick={togglePersonsHandler}>
-        {showPersonsState.showPersons === true ? "Hide persons" : "Show persons"}
+        {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
       </button>
       {
-        showPersonsState.showPersons === true ?
+        showPersonsState.showPersons ?
           <div>
             <Person name={personsState.persons[0].name}
                     age={personsState.persons[0].age}
