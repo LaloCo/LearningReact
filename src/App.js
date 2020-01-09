@@ -7,9 +7,9 @@ const app = props => {
   // setPersonsState is the function that can be called to update personsState
   const [ personsState, setPersonsState ] = useState({
     persons: [
-      { name: 'Eduardo', age: 26 },
-      { name: 'Yesenia', age: 26 },
-      { name: 'Marty', age: 60 }
+      { id: 'nf.kdj', name: 'Eduardo', age: 26 },
+      { id: 'nfgjkr.', name: 'Yesenia', age: 26 },
+      { id: 'lkrjewg', name: 'Marty', age: 60 }
     ]
   });
 
@@ -68,7 +68,8 @@ const app = props => {
         {personsState.persons.map((person, index) => {
           return <Person name={person.name}
                          age={person.age}
-                         click={() => deletePersonHandler(index)} />
+                         click={() => deletePersonHandler(index)}
+                         key={person.id} />
         })}
       </div>
     );
