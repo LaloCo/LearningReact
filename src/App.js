@@ -46,14 +46,10 @@ const app = props => {
     setShowPersonsState({showPersons: !doesShow});
   }
 
-  const nameChangeHandler = event => {
-    setPersonsState({
-      persons: [
-        { name: event.target.value, age: 26 },
-        { name: 'Yesenia López', age: 26 },
-        { name: 'Marty', age: 60 }
-      ]
-    })
+  const deletePersonHandler = personIndex => {
+    const persons = [...personsState.persons];
+    persons.splice(personIndex, 1);
+    setPersonsState({persons: persons});
   }
 
   const style = {
@@ -69,16 +65,11 @@ const app = props => {
   if (showPersonsState.showPersons) {
     persons = (
       <div>
-        <Person name={personsState.persons[0].name}
-                age={personsState.persons[0].age}
-                changed={nameChangeHandler} />
-        <Person name={personsState.persons[1].name}
-                age={personsState.persons[1].age}
-                click={switchNameHandler.bind(this, 'Marty Cagan')} >
-                Some extra information about me.
-        </Person>
-        <Person name={personsState.persons[2].name}
-                age={personsState.persons[2].age} />
+        {personsState.persons.map((person, index) => {
+          return <Person name={person.name}
+                         age={person.age}
+                         click={() => deletePersonHandler(index)} />
+        })}
       </div>
     );
   }
