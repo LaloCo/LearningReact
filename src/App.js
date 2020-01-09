@@ -48,7 +48,7 @@ const app = props => {
     const persons = [...personsState.persons];
     persons[personIndex] = person;
 
-    setPersonsState({persons: persons});
+    setPersonsState({persons: persons}); 
   }
 
   const deletePersonHandler = personIndex => {
