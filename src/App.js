@@ -23,27 +23,32 @@ const app = props => {
 
   console.log(personsState, otherState);
 
-  const switchNameHandler = (newName) => {
-    // by using arrow functions (ES6 syntax), the 'this' keyword
-    // actually refers to the class (App in this case)
-    // contrary to defining this as a normal function (ES5)
-    
-    // DON'T DO THIS: personsState.persons[0].name = "Eduardo Rosas";
-
-    // with React Hooks, this does not merge this new state with the old one
-    // as it happened with class-based Components, it overrides everything
-    setPersonsState({
-      persons: [
-        { name: 'Eduardo Rosas', age: 26 },
-        { name: 'Yesenia López', age: 26 },
-        { name: newName, age: 60 }
-      ]
-    })
-  }
-
   const togglePersonsHandler = () => {
     const doesShow = showPersonsState.showPersons;
     setShowPersonsState({showPersons: !doesShow});
+  }
+
+  const nameChangedHandler = ( event, id ) => {
+    const personIndex = personsState.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    // using the spread operator to spread all of the properties
+    // from the object into a new object so that we don't mutate
+    // the original object
+    const person = {
+      ...personsState.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    // also using the spread operator to get all the elements
+    // from an array in a new (different) array for same
+    // immutable properties
+    const persons = [...personsState.persons];
+    persons[personIndex] = person;
+
+    setPersonsState({persons: persons});
   }
 
   const deletePersonHandler = personIndex => {
@@ -69,6 +74,7 @@ const app = props => {
           return <Person name={person.name}
                          age={person.age}
                          click={() => deletePersonHandler(index)}
+                         changed={(event) => nameChangedHandler(event, person.id)}
                          key={person.id} />
         })}
       </div>
