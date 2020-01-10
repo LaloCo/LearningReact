@@ -84,10 +84,18 @@ const app = props => {
     style.backgroundColor = 'red';
   }
 
+  const paragraphClasses = [];
+  if (personsState.persons.length <= 2) {
+    paragraphClasses.push('red');
+  }
+  if (personsState.persons.length <= 1) {
+    paragraphClasses.push('bold');
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'm a React app</h1>
-      <p>This is really working!!!</p>
+      <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
       <button style={style}
               onClick={togglePersonsHandler}>
         {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
