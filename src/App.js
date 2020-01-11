@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
-import './App.css';
+import cssClasses from './App.css';
 import Person from './Person/Person';
 
 const app = props => {
@@ -75,17 +75,17 @@ const app = props => {
 
   const paragraphClasses = [];
   if (personsState.persons.length <= 2) {
-    paragraphClasses.push('red');
+    paragraphClasses.push(cssClasses.red);
   }
   if (personsState.persons.length <= 1) {
-    paragraphClasses.push('bold');
+    paragraphClasses.push(cssClasses.bold);
   }
 
   return (
-    <div className="App">
+    <div className={cssClasses.App}>
       <h1>Hi, I'm a React app</h1>
       <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
-      <button className="button" onClick={togglePersonsHandler}>
+      <button className={cssClasses.button} onClick={togglePersonsHandler}>
         {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
       </button>
       {persons}
