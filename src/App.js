@@ -1,6 +1,5 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 const app = props => {
@@ -102,18 +101,16 @@ const app = props => {
   }
 
   return (
-    <StyleRoot>
-      <div className="App">
-        <h1>Hi, I'm a React app</h1>
-        <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
-        <button style={style}
-                onClick={togglePersonsHandler}>
-          {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
-        </button>
-        {persons}
-      </div>
-    </StyleRoot>
+    <div className="App">
+      <h1>Hi, I'm a React app</h1>
+      <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
+      <button style={style}
+              onClick={togglePersonsHandler}>
+        {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
+      </button>
+      {persons}
+    </div>
   );
 }
 
-export default Radium(app);
+export default app;
