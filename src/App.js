@@ -58,6 +58,7 @@ const app = props => {
   }
 
   let persons = null;
+  let btnClasses = [cssClasses.button];
 
   if (showPersonsState.showPersons) {
     persons = (
@@ -71,6 +72,8 @@ const app = props => {
         })}
       </div>
     );
+
+    btnClasses.push(cssClasses.destructive);
   }
 
   const paragraphClasses = [];
@@ -85,7 +88,7 @@ const app = props => {
     <div className={cssClasses.App}>
       <h1>Hi, I'm a React app</h1>
       <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
-      <button className={cssClasses.button} onClick={togglePersonsHandler}>
+      <button className={btnClasses.join(' ')} onClick={togglePersonsHandler}>
         {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
       </button>
       {persons}
