@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 const app = props => {
@@ -63,7 +64,11 @@ const app = props => {
     font: 'inherit',
     border: '1px solid blue',
     padding: '8px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: 'lightgreen',
+      color: 'black'
+    }
   };
 
   let persons = null;
@@ -82,6 +87,10 @@ const app = props => {
     );
 
     style.backgroundColor = 'red';
+    style[':hover'] = {
+      backgroundColor: 'salmon',
+      color: 'black'
+    };
   }
 
   const paragraphClasses = [];
@@ -105,4 +114,4 @@ const app = props => {
   );
 }
 
-export default app;
+export default Radium(app);
