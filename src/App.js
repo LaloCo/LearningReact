@@ -1,26 +1,6 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
-import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
-
-// These backticks are vanilla JS
-// They somewhat help format strings, so we can use ${} to execute
-// JS code which value will then be turned into string
-// props here has an alt value comming from the StyledButton "HTML"
-// when rendered
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 const app = props => {
   // personsState now works as state (without the this keyword)
@@ -77,19 +57,6 @@ const app = props => {
     setPersonsState({persons: persons});
   }
 
-  // const style = {
-  //   backgroundColor: 'green',
-  //   color: 'white',
-  //   font: 'inherit',
-  //   border: '1px solid blue',
-  //   padding: '8px',
-  //   cursor: 'pointer',
-  //   ':hover': {
-  //     backgroundColor: 'lightgreen',
-  //     color: 'black'
-  //   }
-  // };
-
   let persons = null;
 
   if (showPersonsState.showPersons) {
@@ -104,12 +71,6 @@ const app = props => {
         })}
       </div>
     );
-
-    // style.backgroundColor = 'red';
-    // style[':hover'] = {
-    //   backgroundColor: 'salmon',
-    //   color: 'black'
-    // };
   }
 
   const paragraphClasses = [];
@@ -124,9 +85,9 @@ const app = props => {
     <div className="App">
       <h1>Hi, I'm a React app</h1>
       <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
-      <StyledButton alt={showPersonsState.showPersons} onClick={togglePersonsHandler}>
+      <button className="button" onClick={togglePersonsHandler}>
         {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
-      </StyledButton>
+      </button>
       {persons}
     </div>
   );
