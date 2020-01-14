@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
 import cssClasses from './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Person from '../components/Persons/Person/Person';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 const app = props => {
   // personsState now works as state (without the this keyword)
