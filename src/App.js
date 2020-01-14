@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
 import cssClasses from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 const app = props => {
   // personsState now works as state (without the this keyword)
@@ -64,11 +65,12 @@ const app = props => {
     persons = (
       <div>
         {personsState.persons.map((person, index) => {
-          return <Person name={person.name}
+          return <ErrorBoundary key={person.id}>
+                   <Person name={person.name}
                          age={person.age}
                          click={() => deletePersonHandler(index)}
-                         changed={(event) => nameChangedHandler(event, person.id)}
-                         key={person.id} />
+                         changed={(event) => nameChangedHandler(event, person.id)}/>
+                 </ErrorBoundary>
         })}
       </div>
     );
