@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; // useState is a hook, all hooks start with 'use'
 import cssClasses from './App.css';
-import Person from '../components/Persons/Person/Person';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 const app = props => {
   // personsState now works as state (without the this keyword)
@@ -14,15 +14,11 @@ const app = props => {
     ]
   });
 
-  const [ otherState, setOtherState ] = useState({
-    otherState: 'something something'
-  });
-
   const [ showPersonsState, setShowPersonsState ] = useState({
     showPersons: false
   });
 
-  console.log(personsState, otherState);
+  console.log(personsState, showPersonsState);
 
   const togglePersonsHandler = () => {
     const doesShow = showPersonsState.showPersons;
@@ -59,40 +55,18 @@ const app = props => {
   }
 
   let persons = null;
-  let btnClasses = [cssClasses.button];
 
   if (showPersonsState.showPersons) {
-    persons = (
-      <div>
-        {personsState.persons.map((person, index) => {
-          return <ErrorBoundary key={person.id}>
-                   <Person name={person.name}
-                         age={person.age}
-                         click={() => deletePersonHandler(index)}
-                         changed={(event) => nameChangedHandler(event, person.id)}/>
-                 </ErrorBoundary>
-        })}
-      </div>
-    );
-
-    btnClasses.push(cssClasses.destructive);
-  }
-
-  const paragraphClasses = [];
-  if (personsState.persons.length <= 2) {
-    paragraphClasses.push(cssClasses.red);
-  }
-  if (personsState.persons.length <= 1) {
-    paragraphClasses.push(cssClasses.bold);
+    persons = <Persons persons={personsState.persons}
+                 clicked={deletePersonHandler}
+                 changed={nameChangedHandler}/>
   }
 
   return (
     <div className={cssClasses.App}>
-      <h1>Hi, I'm a React app</h1>
-      <p className={paragraphClasses.join(' ')}>This is really working!!!</p>
-      <button className={btnClasses.join(' ')} onClick={togglePersonsHandler}>
-        {showPersonsState.showPersons ? "Hide persons" : "Show persons"}
-      </button>
+      <Cockpit persons={personsState.persons}
+               showPersons={showPersonsState.showPersons}
+               clicked={togglePersonsHandler}/>
       {persons}
     </div>
   );
