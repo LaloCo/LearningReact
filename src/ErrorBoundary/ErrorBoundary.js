@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-const ErrorBoundary = props => {
-    const [ hasErrorState, setHasErrorState ] = useState({
+class ErrorBoundary extends Component {
+    state = {
         hasError: false,
         errorMessage: ''
-    });
+    };
 
     componentDidCatch = (error, info) => {
-        setHasErrorState({
+        this.setState({
             hasError: true,
             errorMessage: error
         });
     }
-
-    errorContent = null;
-    if (hasErrorState.hasError){
-        // this is displayed instead of the wrapped element if there is an error
-        errorContent = <h1>{hasErrorState.errorMessage}</h1>;
-    } else {
-        // the wrapped element is displayed if there aren't any errors
-        props.children;
+    
+    render () {
+        if (this.state.hasError){
+            // this is displayed instead of the wrapped element if there is an error
+            return (<h1>{this.state.errorMessage}</h1>);
+        } else {
+            // the wrapped element is displayed if there aren't any errors
+            return this.props.children;
+        }
     }
-
-    return (errorContent);
 }
 
 export default ErrorBoundary;
