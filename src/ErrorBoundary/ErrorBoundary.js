@@ -15,8 +15,10 @@ const ErrorBoundary = props => {
 
     errorContent = null;
     if (hasErrorState.hasError){
+        // this is displayed instead of the wrapped element if there is an error
         errorContent = <h1>{hasErrorState.errorMessage}</h1>;
     } else {
+        // the wrapped element is displayed if there aren't any errors
         props.children;
     }
 
