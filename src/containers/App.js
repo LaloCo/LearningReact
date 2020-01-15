@@ -60,6 +60,10 @@ class App extends Component {
     this.setState({persons: persons});
   }
 
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
   render() {
     console.log('[App.js] render');
     let persons = null;
@@ -79,10 +83,6 @@ class App extends Component {
         {persons}
       </div>
     );
-  }
-
-  componentDidMount() {
-    console.log('[App.js] componentDidMount');
   }
 }
 
